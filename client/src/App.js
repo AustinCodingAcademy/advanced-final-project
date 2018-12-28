@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import SignUpSignIn from "./SignUpSignIn";
 import TopNavbar from "./TopNavbar";
-import Secret from "./Secret";
+import Profile from "./Profile";
 
 class App extends Component {
   constructor() {
@@ -44,6 +44,28 @@ class App extends Component {
 
   handleSignIn(credentials) {
     // Handle Sign Up
+    const { username, password } = credentials;
+    if (!username.trim() || !password.trim() ) {
+      this.setState({
+        signUpSignInError: "Must Provide All Fields"
+      });
+    } else {
+
+      fetch("/api/sessions", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(credentials)
+      }).then((res) => {
+        return res.json();
+      }).then((data) => {
+        const { token } = data;
+        localStorage.setItem("token", token);
+        this.setState({
+          signUpSignInError: "",
+          authenticated: token
+        });
+      });
+    }  
   }
 
   handleSignOut() {
@@ -58,16 +80,17 @@ class App extends Component {
       <SignUpSignIn 
         error={this.state.signUpSignInError} 
         onSignUp={this.handleSignUp} 
+        onSignIn={this.handleSignIn}
       />
     );
   }
-
+  
   renderApp() {
     return (
       <div>
         <Switch>
-          <Route exact path="/" render={() => <h1>I am protected!</h1>} />
-          <Route exact path="/secret" component={Secret} />
+          <Route exact path="/" render={() => <h1>Welcome</h1>} />
+          <Route exact path="/profile" component={Profile} />
           <Route render={() => <h1>NOT FOUND!</h1>} />
         </Switch>
       </div>
