@@ -4,6 +4,7 @@ import "./App.css";
 import SignUpSignIn from "./SignUpSignIn";
 import TopNavbar from "./TopNavbar";
 import Profile from "./Profile";
+import HomePage from "./Components/HomePage";
 
 class App extends Component {
   constructor() {
@@ -91,6 +92,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" render={() => <h1>Welcome</h1>} />
           <Route exact path="/profile" component={Profile} />
+          {/* <Route exact path="/homepage" component={HomePage}/> */}
           <Route render={() => <h1>NOT FOUND!</h1>} />
         </Switch>
       </div>
