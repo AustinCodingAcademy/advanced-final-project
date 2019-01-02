@@ -2,10 +2,10 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}
+} */
 
 .App-header {
   background-color: #222;
@@ -18,7 +18,64 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+} */
+/* home page has UserData, UserHeading, and Review components */
+.homePage {
+  display: flex;
+  flex-direction: row;
+}
+/* css for div of all review components */
+.listReviews {
+  display: flex;
+  flex-direction: column;
+}
+/* css for individual review component */
+.reviewContainer {
+  display: flex;
+  flex-direction: column;
+}
+/* the header has the date and review stars */
+.reviewHeader {
+  font-size: 20px;
+}
+/* this has the review text */
+.reviewBody {
+  font-size: 15px;
+}
+/* this is the div that holds all the UserData components listed */
+.columnUserInfo {
+  display: flex;
+  flex-direction: column;
+}
+/* css for individual UserData component */
+.userDataContainer {
+  display: flex;
+  flex-direction: column;
+}
+/* headings for user input about me etc */
+.userTitle {
+  font-size: 20px;
+}
+/* text user inputs to answer profile questions */
+.userBody {
+  font-size: 15px;
+}
+/* css for main middle user info */
+.userHeadingContainer {
+  display: flex;
+  flex-direction: column;
+}
+/* stars */
+.userRating {
+  align-items: left;
+}
+/* carousel of pics to click through */
+.userPicture {
+  padding: 5px;
+}
+.userName {
+  font-size: 20px;
 }

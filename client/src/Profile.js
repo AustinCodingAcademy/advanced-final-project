@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 
-class Secret extends Component {
+let token =localStorage.getItem("token");
+
+    fetch("/api/profile"),{
+      headers:{
+        "Authorization":token
+      } 
+    }
+
+class Profile extends Component {
   constructor() {
     super();
 
@@ -10,7 +18,7 @@ class Secret extends Component {
   }
 
   componentDidMount() {
-    fetch("/secret").then((res) => {
+    fetch("/profile").then((res) => {
       return res.text();
     }).then((data) => {
       this.setState({
@@ -26,4 +34,4 @@ class Secret extends Component {
   }
 }
 
-export default Secret;
+export default Profile;
