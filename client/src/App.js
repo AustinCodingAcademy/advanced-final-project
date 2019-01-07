@@ -4,6 +4,11 @@ import "./App.css";
 import SignUpSignIn from "./SignUpSignIn";
 import TopNavbar from "./TopNavbar";
 import Secret from "./Secret";
+import StudentForm from "./components/StudentForm";
+import StudentProfile from "./components/StudentProfile";
+import TutorForm from "./components/TutorForm";
+import TutorProfile from "./components/TutorProfile";
+import ReviewForm from "./components/ReviewForm";
 
 class App extends Component {
   constructor() {
@@ -15,10 +20,13 @@ class App extends Component {
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    // this.handleSignUpStudent= this.handleSignUpStudent.bind(this);
+    // this.handleSignUpTutor= this.handleSignUpTutor.bind(this);
   }
 
   handleSignUp(credentials) {
     const { username, password, confirmPassword } = credentials;
+    console.log(credentials)
     if (!username.trim() || !password.trim() ) {
       this.setState({
         signUpSignInError: "Must Provide All Fields"
@@ -41,9 +49,79 @@ class App extends Component {
       });
     }
   }
+  // handleSignUpStudent(credentials) {
+  //   const { email, password, confirmPassword } = credentials;
+  //   if (!email.trim() || !password.trim() ) {
+  //     this.setState({
+  //       signUpSignInError: "Must Provide All Fields"
+  //     });
+  //   } else {
 
+  //     fetch("/studentUser", {
+  //       method: "POST",
+  //       headers: {"Content-Type": "application/json"},
+  //       body: JSON.stringify(credentials)
+  //     }).then((res) => {
+  //       return res.json();
+  //     }).then((data) => {
+  //       const { token } = data;
+  //       localStorage.setItem("token", token);
+  //       this.setState({
+  //         signUpSignInError: "",
+  //         authenticated: token
+  //       });
+  //     });
+  //   }
+  // }
+  // handleSignUpTutor(credentials) {
+  //   const { email, password, confirmPassword } = credentials;
+  //   if (!email.trim() || !password.trim() ) {
+  //     this.setState({
+  //       signUpSignInError: "Must Provide All Fields"
+  //     });
+  //   } else {
+
+  //     fetch("/tutorUser", {
+  //       method: "POST",
+  //       headers: {"Content-Type": "application/json"},
+  //       body: JSON.stringify(credentials)
+  //     }).then((res) => {
+  //       return res.json();
+  //     }).then((data) => {
+  //       const { token } = data;
+  //       localStorage.setItem("token", token);
+  //       this.setState({
+  //         signUpSignInError: "",
+  //         authenticated: token
+  //       });
+  //     });
+  //   }
+  // }
   handleSignIn(credentials) {
-    // Handle Sign Up
+    // Handle Sign In
+    const { username, password } = credentials;
+    console.log(credentials)
+    if (!username.trim() || !password.trim() ) {
+      this.setState({
+        signUpSignInError: "Must Provide All Fields"
+      });
+    } else {
+
+      fetch("/api/sessions", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(credentials)
+      }).then((res) => {
+        return res.json();
+      }).then((data) => {
+        const { token } = data;
+        localStorage.setItem("token", token);
+        this.setState({
+          signUpSignInError: "",
+          authenticated: token
+        });
+      });
+    }  
   }
 
   handleSignOut() {
@@ -55,19 +133,37 @@ class App extends Component {
 
   renderSignUpSignIn() {
     return (
+      
       <SignUpSignIn 
         error={this.state.signUpSignInError} 
         onSignUp={this.handleSignUp} 
+        // onSignUpStudent={this.handleSignUpStudent}
+        // onSignUpTutor={this.handleSignUpTutor}
+        onSignIn={this.handleSignIn}
       />
+      
     );
   }
+  // renderSignUpSignIn() {
+  //   return(
+  //     <Switch>
+  //       <Route
+  //       path='/'
+  //       render={(props)=> <SignUpSignIn {...props} err={this.state.signUpSignInError} onSignUp={this.handleSignUp} onSignIn={this.handleSignIn} error={this.renderError}/>}
+  //       />
+  //     </Switch>
+  //   )
+  // }
 
   renderApp() {
     return (
       <div>
         <Switch>
           <Route exact path="/" render={() => <h1>I am protected!</h1>} />
+          {/* <Route exact path="/signupsignin" component={SignUpSignIn}/> */}
           <Route exact path="/secret" component={Secret} />
+          <Route exact path="/studentform" component={StudentForm} />
+          <Route exact path="/tutorform" component={TutorForm} />
           <Route render={() => <h1>NOT FOUND!</h1>} />
         </Switch>
       </div>

@@ -1,5 +1,14 @@
 import React, { Component } from "react";
 
+// let token =localStorage.getItem("token");
+
+//     fetch("/api/profile"),{
+//       headers:{
+//         "Authorization":token
+//       } 
+//     }
+
+
 class Secret extends Component {
   constructor() {
     super();

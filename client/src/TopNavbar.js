@@ -13,6 +13,9 @@ const TopNavbar = (props) => {
         <Nav pullRight>
           <Link to="/secret"><Navbar.Text>Secret</Navbar.Text></Link>
         </Nav>
+        {/* <Nav pullRight>
+          <Link to="/components/AllUsers"><Navbar.Text>All Users</Navbar.Text></Link>
+        </Nav> */}
       </Navbar.Collapse>
     </Navbar>
   );
