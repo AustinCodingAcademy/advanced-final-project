@@ -5,20 +5,20 @@ const hash = require("../services/hash").hash;
 function create(req, res, next) {
   const { username, password } = req.body;
   const u = username;
-  // If no username or password was supplied return an error
+  // If no email or password was supplied return an error
   if (!username || !password) {
     return res.status(422)
-    .json({ error: "You must provide an username and password" });
+    .json({ error: "You must provide an email and password" });
   }
-  console.log("Look for a user with the username");
+  console.log("Look for a user with the email", username);
   User.findOne({ username: u}).exec()
   .then((existingUser) => {
       // If the user exist return an error on sign up
     if (existingUser) {
-      console.log("This username is already being used");
-      return res.status(422).json({ error: "Username is in use" });
+      console.log("This email is already being used");
+      return res.status(422).json({ error: "Email is in use" });
     }
-    console.log("This username is free to use");
+    console.log("This email is free to use");
     saveUser(username,password,(token) => {
       res.json(token);
     });
@@ -28,7 +28,7 @@ function create(req, res, next) {
 
 function saveUser(username,password,done) {
   hash(password, null,function (hashedPassword) {
-    // Create a new user with the supplied username, and the hashed password
+    // Create a new user with the supplied email, and the hashed password
     const user = new User({ username, password: hashedPassword });
     console.log("Saving the user");
     user.save()

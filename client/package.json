@@ -6,6 +6,7 @@
     "react-scripts": "0.9.3"
   },
   "dependencies": {
+    "@material-ui/core": "^3.8.2",
     "axios": "^0.15.2",
     "bootstrap": "^3.3.7",
     "react": "^15.4.0",
