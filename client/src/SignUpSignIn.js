@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { Tabs, Tab, Row, Col, Alert } from "react-bootstrap";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
-// import SignUpStudent from "./SignUpStudent";
-// import SignUpTutor from "./SignUpTutor";
+
 
 class SignUpSignIn extends Component {
 
@@ -26,7 +25,6 @@ class SignUpSignIn extends Component {
               <SignUp onSignUp={this.props.onSignUp} />
             </Tab>
             <Tab eventKey={2} title="Sign In">
-              Sign In
               <SignIn onSignIn={this.props.onSignIn}/>
             </Tab>
           </Tabs>
@@ -39,8 +37,6 @@ class SignUpSignIn extends Component {
 SignUpSignIn.propTypes = {
   error: PropTypes.string,
   onSignUp: PropTypes.func.isRequired,
-  //onSignUpStudent: PropTypes.func.isRequired,
-  //onSignUpTutor: PropTypes.func.isRequired,
   onSignIn: PropTypes.func.isRequired
 };
 

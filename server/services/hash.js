@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt-nodejs");
-
+//hash
 function hash(word,err,done) {
   bcrypt.genSalt(10, function (saltErr, salt) {
     console.log("the salt",salt);

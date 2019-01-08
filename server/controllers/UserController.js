@@ -10,7 +10,7 @@ function create(req, res, next) {
     return res.status(422)
     .json({ error: "You must provide an email and password" });
   }
-  console.log("Look for a user with the email");
+  console.log("Look for a user with the email", username);
   User.findOne({ username: u}).exec()
   .then((existingUser) => {
       // If the user exist return an error on sign up

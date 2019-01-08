@@ -13,6 +13,12 @@ const userSchema = new Schema({
     type: String,
     required: true
   }
+  //radio buttons-what would the type be?
+  // role: {
+  //   type: String,
+  //   required: true
+  // }
+
 });
 
 module.exports = mongoose.model("User", userSchema);

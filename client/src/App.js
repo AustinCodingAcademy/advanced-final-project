@@ -20,8 +20,6 @@ class App extends Component {
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
-    // this.handleSignUpStudent= this.handleSignUpStudent.bind(this);
-    // this.handleSignUpTutor= this.handleSignUpTutor.bind(this);
   }
 
   handleSignUp(credentials) {
@@ -49,54 +47,7 @@ class App extends Component {
       });
     }
   }
-  // handleSignUpStudent(credentials) {
-  //   const { email, password, confirmPassword } = credentials;
-  //   if (!email.trim() || !password.trim() ) {
-  //     this.setState({
-  //       signUpSignInError: "Must Provide All Fields"
-  //     });
-  //   } else {
 
-  //     fetch("/studentUser", {
-  //       method: "POST",
-  //       headers: {"Content-Type": "application/json"},
-  //       body: JSON.stringify(credentials)
-  //     }).then((res) => {
-  //       return res.json();
-  //     }).then((data) => {
-  //       const { token } = data;
-  //       localStorage.setItem("token", token);
-  //       this.setState({
-  //         signUpSignInError: "",
-  //         authenticated: token
-  //       });
-  //     });
-  //   }
-  // }
-  // handleSignUpTutor(credentials) {
-  //   const { email, password, confirmPassword } = credentials;
-  //   if (!email.trim() || !password.trim() ) {
-  //     this.setState({
-  //       signUpSignInError: "Must Provide All Fields"
-  //     });
-  //   } else {
-
-  //     fetch("/tutorUser", {
-  //       method: "POST",
-  //       headers: {"Content-Type": "application/json"},
-  //       body: JSON.stringify(credentials)
-  //     }).then((res) => {
-  //       return res.json();
-  //     }).then((data) => {
-  //       const { token } = data;
-  //       localStorage.setItem("token", token);
-  //       this.setState({
-  //         signUpSignInError: "",
-  //         authenticated: token
-  //       });
-  //     });
-  //   }
-  // }
   handleSignIn(credentials) {
     // Handle Sign In
     const { username, password } = credentials;
@@ -137,8 +88,6 @@ class App extends Component {
       <SignUpSignIn 
         error={this.state.signUpSignInError} 
         onSignUp={this.handleSignUp} 
-        // onSignUpStudent={this.handleSignUpStudent}
-        // onSignUpTutor={this.handleSignUpTutor}
         onSignIn={this.handleSignIn}
       />
       

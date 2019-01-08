@@ -45,13 +45,18 @@ app.get("/canigetthis", function (req, res) {
 app.get("/secret", function (req, res) {
   res.send(`The current user is ${req.user.username}`);
 });
+app.get("/api/users/:id", function (req, res){
+  res.send(`${req.user.userId}`)
+})
 app.get("/api/gettheuserid", function(req,res) {
   res.send(`${req.user._id}`);
 });
-
+app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname + '/public/index.html'));
+    });
+  
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Listening on port:${port}`);
 });
 }
-
