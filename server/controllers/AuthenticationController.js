@@ -3,7 +3,7 @@ const jwt = require("jwt-simple");
 
 function authentication(request, response,next) {
   // get the token from the header
-  if (request.path.split("/") [1] !== "api") 
+  if (request.path.split("/")[1] !== "api") 
   {
     return next();
   }

@@ -5,7 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-//const fs= require('fs');
+const fs= require('fs');
 const userRoutes = require("./routes/UserRoutes");
 const sessionRoutes = require("./routes/SessionRoutes");
 const authenticationRoutes = require("./routes/AuthenticationRoutes");
@@ -54,7 +54,7 @@ app.get("/api/gettheuserid", function(req,res) {
 app.get('*', function(req, res) {
       res.sendFile(path.join(__dirname + '/public/index.html'));
     });
-  
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Listening on port:${port}`);
